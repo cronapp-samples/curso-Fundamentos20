@@ -1,0 +1,65 @@
+<div class="bg">
+<div class="container-full" data-container="true">
+    <div class="container-fluid style4012" data-container="true">
+        <div class="row component-holder">
+            <div class="col-xs-12 col-sm-3 col-lg-4" data-container="true"></div>
+            <div class="col-xs-12 col-sm-6 col-lg-4 login-panel login-view style6574" data-container="true">
+                <form class="form-validation" autocomplete="off" name="form" ng-submit="login()" role="form">
+                    <div class="text-danger wrapper text-center" ng-show="authError"></div>
+                    <div class="component-holder ng-binding ng-scope col-xs-12 col-md-12" data-component="crn-image" id="crn-image-823921">
+                        <img src="plugins/cronapp-framework-js/img/cronapp-logo-login.png" class="" style="display:block; width:60%; height:auto; margin-left:auto; margin-right:auto;" xattr-position="margin-left:auto; margin-right:auto;" data-component="crn-image">
+                    </div>
+                    <div class="col-xs-10 col-md-8 col-md-push-2 col-xs-push-1" data-container="true">
+                        <ul class="list-inline center-block text-center">
+                        </ul>
+                    </div>
+                    <div class="component-holder ng-binding ng-scope col-xs-12 col-md-12" data-component="crn-textinput" id="crn-textinput-283724">
+                        <div class="form-group">
+                            <label for="input7274">{{'Login.view.Username' | translate}}</label>
+                            <input type="text" mask="" mask-placeholder="" ng-required="false" ng-model="username.value" class="form-control k-textbox" id="input7274" placeholder="">
+                        </div>
+                    </div>
+                    <div class="component-holder ng-binding ng-scope col-xs-12 col-md-12" data-component="crn-textinput" id="crn-textinput-343947">
+                        <div class="form-group">
+                            <label for="input9836">{{'Login.view.Password' | translate}}</label>
+                            <input type="password" mask="" mask-placeholder="" ng-required="false" ng-model="password.value" class="form-control k-textbox" id="input9836" autocomplete="off" placeholder="">
+                        </div>
+                    </div>
+                    <div class="component-holder ng-binding ng-scope col-xs-12 col-md-12" data-component="crn-enterprise-checkbox" id="crn-enterprise-checkbox-889238">
+                    </div>
+                    <div class="component-holder ng-binding ng-scope col-md-12" data-component="crn-button">
+                        <div class="messages">
+                            <div ng-show="message.error" class="help-block" data-container="true">
+                                {{message.error}}
+                            </div>
+                        </div>
+                        <button class="btn btn-default col-md-12 col-xs-12 k-button btn-primary" type="submit" ng-disabled="form.$invalid || vm.dataLoading" ng-click="" xattr-size="" xattr-fullsize="" xattr-theme="btn-default" xattr-disabled="" data-component="crn-button"> <span>{{"Login.view.Login" | translate}} </span></button><button class="btn col-md-12 col-xs-12 k-button btn-light" type="submit" ng-disabled="form.$invalid || vm.dataLoading" ng-click="cronapi.client('js.blockly.Login.abrirCadastro').run()" xattr-size="" xattr-fullsize="" xattr-theme="btn-light" xattr-disabled="" data-component="crn-button"> <span>Não possui conta? Cadastre-se!</span></button>
+                    </div>
+                </form>
+                             </div>
+            <div class="component-holder ng-binding ng-scope col-xs-12 col-sm-12 col-lg-12" data-component="crn-button" id="crn-button-846239"></div>
+            <div class="col-xs-12 col-sm-3 col-lg-4" data-container="true"></div>
+        </div>
+    </div>
+</div>
+</div><div class="modal fade" id="modal37489">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="component-holder modal-header">
+       <div class="list-group list-group-sm row">
+         <div data-container="true" data-replace="false"><div class="component-holder ng-binding ng-scope" data-component="crn-button" id="crn-button-669082" align="right"><button class="btn k-button btn-light" ng-click="cronapi.client('js.blockly.Login.fecharCadastro').run()" xattr-size="" xattr-fullsize="" xattr-theme="btn-light" xattr-disabled=""><i class="glyphicon glyphicon-remove"></i> <span></span></button></div><h1 class="text-center component-holder" xattr-position="h1 text-center" xattr-type="h1" data-component="crn-text-component" id="crn-text-component-963658">Informe seus dados</h1></div>
+       </div>
+      </div>
+      <div class="modal-body">
+       <div class="list-group list-group-sm row">
+         <div data-container="true" data-replace="false"><div class="component-holder ng-binding ng-scope" data-component="crn-textinput" id="crn-textinput-698888"><div class="form-group"><label for="input3085">Nome</label><input type="text" mask="" mask-placeholder="" ng-required="false" ng-model="vars.nome" class="form-control k-textbox" id="input3085" placeholder="Placeholder text"></div></div><div class="component-holder ng-binding ng-scope" data-component="crn-textinput" id="crn-textinput-50091"><div class="form-group"><label for="input308535721">Email</label><input type="text" mask="" mask-placeholder="" ng-required="false" ng-model="vars.email" class="form-control k-textbox" id="input308535721" placeholder="Placeholder text"></div></div><div class="component-holder ng-binding ng-scope" data-component="crn-textinput" id="crn-textinput-70991"><div class="form-group"><label for="input30853572167661">Senha</label><input type="password" mask="" mask-placeholder="" ng-required="false" ng-model="vars.senha" class="form-control k-textbox" id="input30853572167661" placeholder="Placeholder text"></div></div><div class="component-holder ng-binding ng-scope" data-component="crn-textinput" id="crn-textinput-32641"><div class="form-group"><label for="input3085357216766172171">Confirme a senha</label><input type="password" mask="" mask-placeholder="" ng-required="false" ng-model="vars.confirmasenha" class="form-control k-textbox" id="input3085357216766172171" placeholder="Placeholder text"></div></div></div>
+       </div>
+     </div>
+     <div class="modal-footer">
+       <div class="list-group list-group-sm row">
+         <div data-container="true" data-replace="false"><div class="component-holder ng-binding ng-scope" data-component="crn-button" id="crn-button-586909"><button class="btn btn-default k-button btn-block" ng-click="cronapi.server('blockly.Usuario.criarUsuario').run(vars.nome, vars.email, vars.senha, vars.confirmasenha)" xattr-size="" xattr-fullsize="btn-block" xattr-theme="btn-default" xattr-disabled=""><i class="glyphicon glyphicon-ok"></i> <span>Cadastrar</span></button></div></div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
