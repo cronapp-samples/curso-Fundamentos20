@@ -50,14 +50,14 @@ public interface UserDAO extends JpaRepository<User, java.lang.String> {
    * OneToMany Relation
    * @generated
    */
-  @Query("SELECT entity FROM Role entity WHERE entity.user.id = :id")
-  public Page<Role> findRole(@Param(value="id") java.lang.String id, Pageable pageable);
+  @Query("SELECT entity FROM Carro entity WHERE entity.user.id = :id")
+  public Page<Carro> findCarro(@Param(value="id") java.lang.String id, Pageable pageable);
 
   /**
    * OneToMany Relation
    * @generated
    */
-  @Query("SELECT entity FROM Carro entity WHERE entity.user.id = :id")
-  public Page<Carro> findCarro(@Param(value="id") java.lang.String id, Pageable pageable);
+  @Query("SELECT entity FROM Role entity WHERE entity.user.id = :id")
+  public Page<Role> findRole(@Param(value="id") java.lang.String id, Pageable pageable);
 
 }
