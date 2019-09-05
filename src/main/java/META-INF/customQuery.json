@@ -520,5 +520,89 @@
     },
     "errorHandles": {},
     "serviceUrl": "api/cronapi/odata/v2/query493831/"
+  },
+  "query981065": {
+    "customId": "query981065",
+    "queryName": "MarcaFIPEapi",
+    "sourceType": "blockly",
+    "baseEntity": "app.entity.MarcaFIPE",
+    "blockly": {
+      "blocklyClass": "blockly.FIPEapi",
+      "blocklyMethod": "obterMarcas",
+      "blocklyLanguage": "java",
+      "blocklyJson": {
+        "namespace": "blockly.FIPEapi",
+        "sourcePath": "src/main/java/blockly/FIPEapi.blockly",
+        "language": "java",
+        "class": "blockly.FIPEapi",
+        "methods": [
+          {
+            "name": "obterMarcas",
+            "hasReturn": "true",
+            "params": [
+              "Dados"
+            ]
+          },
+          {
+            "name": "contarMarcas",
+            "hasReturn": "true",
+            "params": [
+              "Dados"
+            ]
+          }
+        ]
+      },
+      "blocklyGETMethod": "obterMarcas",
+      "blocklyPOSTMethod": "default",
+      "blocklyPUTMethod": "default",
+      "blocklyDELETEMethod": "default",
+      "blocklyFILTERMethod": "default",
+      "blocklyCOUNTMethod": "contarMarcas"
+    },
+    "query": "",
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": false,
+      "PUT": false,
+      "DELETE": false,
+      "FILTER": false,
+      "COUNT": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {
+      "fipe_name": {
+        "key": false,
+        "nullable": true,
+        "type": "String"
+      },
+      "name": {
+        "key": false,
+        "nullable": true,
+        "type": "String"
+      },
+      "id": {
+        "key": false,
+        "nullable": false,
+        "type": "Integer"
+      },
+      "key": {
+        "key": true,
+        "nullable": true,
+        "type": "String"
+      },
+      "order": {
+        "key": false,
+        "nullable": true,
+        "type": "Integer"
+      }
+    },
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/query/query981065/"
   }
 }
