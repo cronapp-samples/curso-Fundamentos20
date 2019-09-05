@@ -71,6 +71,11 @@
             <name>artifactory-cronapp-snapshot</name>
             <url>https://artifactory.cronapp.io/libs-snapshot</url>
         </repository>
+        <repository>
+            <id>codelds</id>
+            <name>oracle</name>
+            <url>https://code.lds.org/nexus/content/groups/main-repo</url>
+        </repository>
     </repositories>
     <dependencies>
         <dependency>
@@ -126,11 +131,6 @@
         </dependency>
         <dependency>
             <groupId>io.cronapp</groupId>
-            <artifactId>cronapi-java</artifactId>
-            <version>2.2.29</version>
-        </dependency>
-        <dependency>
-            <groupId>io.cronapp</groupId>
             <artifactId>cronapp-framework-java</artifactId>
             <version>2.2.5</version>
         </dependency>
@@ -138,6 +138,11 @@
             <groupId>io.cronapp</groupId>
             <artifactId>olingo-odata2-jpa-processor-core</artifactId>
             <version>2.2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cronapp</groupId>
+            <artifactId>cronapi-java</artifactId>
+            <version>2.2.30</version>
         </dependency>
     </dependencies>
     <properties>
