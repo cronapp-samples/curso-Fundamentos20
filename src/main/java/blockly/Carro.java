@@ -16,6 +16,22 @@ public static final int TIMEOUT = 300;
  * @param Entidade
  * @return Var
  */
+// Carros
+public static Var apos_inserir(Var Entidade) throws Exception {
+ return new Callable<Var>() {
+
+   public Var call() throws Exception {
+    cronapi.database.Operations.insert(Var.valueOf("app.entity.Noticias"),Var.valueOf("data",cronapi.dateTime.Operations.getNow()),Var.valueOf("noticia",Var.valueOf(Var.valueOf("Novo carro na comunidade:").toString() + cronapi.object.Operations.getObjectField(Entidade, Var.valueOf("marca")).toString() + Var.valueOf("").toString() + cronapi.object.Operations.getObjectField(Entidade, Var.valueOf("modelo")).toString() + Var.valueOf("placa: ").toString() + cronapi.object.Operations.getObjectField(Entidade, Var.valueOf("placa")).toString())));
+    return Var.VAR_NULL;
+   }
+ }.call();
+}
+
+/**
+ *
+ * @param Entidade
+ * @return Var
+ */
 // Carro
 public static Var calculaConsumoMedioKmPorLitro(Var Entidade) throws Exception {
  return new Callable<Var>() {
