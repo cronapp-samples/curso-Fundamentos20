@@ -520,5 +520,76 @@
     },
     "errorHandles": {},
     "serviceUrl": "api/cronapi/odata/v2/query493831/"
+  },
+  "query572493": {
+    "customId": "query572493",
+    "queryName": "postoNews",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "Posto",
+    "entityFullName": "app.entity.Posto",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "Posto",
+          "alias": "p",
+          "namespace": "app.entity.Posto"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "p"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true,
+      "COUNT": true
+    },
+    "events": {
+      "afterInsert": {
+        "blocklyClass": "blockly.Posto",
+        "blocklyMethod": "aposInserir",
+        "blocklyLanguage": "java",
+        "blocklyJson": {
+          "namespace": "blockly.Posto",
+          "sourcePath": "src/main/java/blockly/Posto.blockly",
+          "language": "java",
+          "class": "blockly.Posto",
+          "methods": [
+            {
+              "name": "aposInserir",
+              "hasReturn": "true",
+              "params": [
+                "Entidade\u003capp.entity.Posto\u003e"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query572493/"
   }
 }
