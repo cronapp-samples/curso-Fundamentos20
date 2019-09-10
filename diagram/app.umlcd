@@ -710,6 +710,149 @@
       "angle": 0,
       "attributes": [
         "id:java.lang.String",
+        "noticia:java.lang.String",
+        "data:java.sql.Timestamp"
+      ],
+      "attrs": {
+        ".uml-class-attrs-rect": {
+          "height": 90,
+          "transform": "translate(0,50)"
+        },
+        ".uml-class-attrs-text": {
+          "font-size": 11,
+          "text": "id\nnoticia\ndata\n"
+        },
+        ".uml-class-attrs-value": {
+          "font-size": 11,
+          "ref-x": 65.796875,
+          "text": "Texto\nTexto\nData e Hora com Fuso\n"
+        },
+        ".uml-class-methods-rect": {
+          "height": 30,
+          "transform": "translate(0,140)"
+        },
+        ".uml-class-methods-text": {
+          "fill": "#0066FF",
+          "font-size": 11,
+          "text": ""
+        },
+        ".uml-class-name-rect": {
+          "height": 50,
+          "transform": "translate(0,0)"
+        },
+        ".uml-class-name-text": {
+          "fill": "#000",
+          "font-size": 12,
+          "font-weight": "bold",
+          "text": "Noticias"
+        },
+        "rect": {
+          "stroke": "yellow",
+          "stroke-width": 2
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "java.lang.String",
+          "dbName": "id",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "UUID.randomUUID().toString().toUpperCase()",
+          "label": "Id",
+          "mask": "",
+          "isPrimaryKey": true,
+          "isUniqueKey": false,
+          "isNullable": false,
+          "pkType": "UUID",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
+        },
+        {
+          "name": "noticia",
+          "type": "java.lang.String",
+          "dbName": "noticia",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "Noticia",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
+        },
+        {
+          "name": "data",
+          "type": "java.sql.Timestamp",
+          "dbName": "data",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "Data",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
+        }
+      ],
+      "generateView": "Auto",
+      "id": "3bb5664d-92ab-45a7-8a2e-12e9a05f326e",
+      "isRest": "true",
+      "methods": [],
+      "modelType": "Table",
+      "name": "Noticias",
+      "position": {
+        "x": 346,
+        "y": 308
+      },
+      "queries": [],
+      "realName": "",
+      "role": "Auto",
+      "runtimeClass": "cronos.widgets.joint.uml.Class",
+      "size": {
+        "height": 118.69715118408203,
+        "width": 194.453125
+      },
+      "type": "uml.Class",
+      "z": 20
+    },
+    {
+      "angle": 0,
+      "attributes": [
+        "id:java.lang.String",
         "posto:java.lang.String",
         "cep:java.lang.String",
         "endereco:java.lang.String",
@@ -1477,6 +1620,7 @@
         "fa31c3d5-20e4-498f-a6ba-46117ac91fd9",
         "4894af66-c36f-4469-8655-28c2de678a06",
         "d2e50f97-0b9e-4037-94ba-af64568af247",
+        "3bb5664d-92ab-45a7-8a2e-12e9a05f326e",
         "1df87f56-c5ba-47f5-8e68-82931f49b989",
         "d92238a3-a37d-4cc6-a543-d0687dc207cd",
         "b66f99a4-7fd3-4df7-94ab-9ad0ae3160b7"

@@ -452,7 +452,6 @@
   "CategoryType.SOCIAL": "Social",
   "sociaLoginDescription": "Function that login with selected social network",
   "socialNetwork": "Social Network",
-  "socialLogin": "Login",
   "getSelectedRowsGrid": "Get Selected Rows from Grid",
   "functionToGetSelectedRowsGrid": "Function to get selected rows from a grid",
   "loadMoreName": "Load more itens",
@@ -465,5 +464,10 @@
   "millisecond": "Millisecond",
   "socialLogin": "Social Login",
   "socialLoginDescription": "Function to login with social media(Facebook/Github|Google|Linkedin)",
-  "clearCacheBeforeOpen": "Clean Login Data on Logoff"
+  "clearCacheBeforeOpen": "Clean Login Data on Logoff",
+  "classNameWithMethod": "Name of block function to be called",
+  "callbackFinish": "Function to be executed when execution is finished",
+  "newline": "Newline",
+  "newlineDescription": "Function that returns a newline '\\n'",
+  "stopExecutionAfterScopeDestroyLabel": "Stop execution after changing scope"
 }

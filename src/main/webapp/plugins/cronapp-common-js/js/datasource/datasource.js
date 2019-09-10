@@ -1155,15 +1155,17 @@ angular.module('datasourcejs', [])
      * Always valid if input has pattern
      */
 
-    this.hasPattern = function(){
-      return $('input[ng-model*="' + this.name + '."]').attr("pattern");
+    this.getPatterns = function(){
+      return $('input[ng-model*="' + this.name + '."]').filter(function( index ) {
+        return $( this ).attr("pattern");
+      });
     };
 
     /**
      * Valid if required field is valid
      */
     this.missingRequiredField = function() {
-      if(this.hasPattern()){
+      if(this.getPatterns().length > 0){
         return false;
       }
       if (this.checkRequired) {
@@ -1182,7 +1184,7 @@ angular.module('datasourcejs', [])
      * Valid is other validations like email, date and so on
      */
     this.hasInvalidField = function() {
-      if(this.hasPattern()){
+      if(this.getPatterns().length > 0){
         return false;
       }
       if (this.checkRequired) {
@@ -1424,11 +1426,11 @@ angular.module('datasourcejs', [])
                 currentRow.__status = "updated";
                 currentRow.__original = lastActive;
                 this.hasMemoryData = true;
-                this.notifyPendingChanges(this.hasMemoryData);
                 if (this.dependentLazyPost) {
                   currentRow.__parentId = eval(this.dependentLazyPost).active.__$id;
                 }
               }
+              this.notifyPendingChanges(this.hasMemoryData);
               this.handleAfterCallBack(this.onAfterUpdate);
 
               if (this.events.update && hotData) {
@@ -2885,6 +2887,16 @@ angular.module('datasourcejs', [])
       return value === '' || value === undefined || value === null || value === '\'\'' || value === 'null';
     }
 
+    this.getFieldFromSchema = function (name) {
+      if (this.schema) {
+        for (var i = 0; i < this.schema.length; i++) {
+          if (this.schema[i].name === name)
+            return this.schema[i].type;
+        }
+      }
+      return null;
+    };
+
     this.parserCondition = function (data, strategy, resultData) {
       var result = '';
       var operation = data.type;
@@ -2925,18 +2937,39 @@ angular.module('datasourcejs', [])
               }
             } else {
               if (!this.isEmpty(value)) {
-                if (result != '') {
-                  result += ' ' + oper.toLowerCase() + ' ';
+
+                var canContinue = true;
+                var isDate = this.getFieldFromSchema(arg.left) === 'DateTime';
+                var objDateMoment = undefined;
+                if (isDate && value.indexOf('datetime') === -1) {
+                  objDateMoment = this.$scope.cronapi.dateTime.getMomentObj(value);
+                  canContinue = objDateMoment.isValid()
                 }
 
-                if (arg.type == '%') {
-                  if (this.isLocalData()) {
-                    result += "contains("+arg.left+", "+value.toLowerCase()+")";
-                  } else {
-                    result += "substringof("+value.toLowerCase()+", tolower("+arg.left+"))";
+                if (canContinue) {
+
+                  if (result != '') {
+                    result += ' ' + oper.toLowerCase() + ' ';
                   }
-                } else {
-                  result += arg.left + getQueryOperator(arg.type) + value;
+
+                  if (arg.type == '%') {
+                    if (this.isLocalData()) {
+                      result += "contains("+arg.left+", "+value.toLowerCase()+")";
+                    } else {
+                      result += "substringof("+value.toLowerCase()+", tolower("+arg.left+"))";
+                    }
+                  } else {
+                    if (objDateMoment) {
+                      var momentTimezoneOffset = objDateMoment.toDate().getTimezoneOffset();
+                      var adjustOffset = timeZoneOffset - momentTimezoneOffset;
+                      objDateMoment.add(adjustOffset, 'minutes');
+                      result += arg.left + getQueryOperator(arg.type) + "datetimeoffset'"+objDateMoment.toISOString()+"'";
+                    }
+                    else {
+                      result += arg.left + getQueryOperator(arg.type) + value;
+                    }
+                  }
+
                 }
               }
             }
@@ -4093,11 +4126,43 @@ angular.module('datasourcejs', [])
   };
 }])
 
+app.directive('crnRepeat', function(DatasetManager, $compile, $parse, $injector, $rootScope) {
+  return {
+    restrict: 'A',
+    priority: 9999998,
+    terminal: true,
+    link: function(scope, element, attrs, controllers, transclude) {
+
+      if (attrs.crnRepeat) {
+        scope.data = DatasetManager.datasets;
+        if (scope.data[attrs.crnRepeat]) {
+          scope.datasourceRepeat = scope.data[attrs.crnRepeat];
+        } else {
+          scope.datasourceRepeat = {};
+          scope.datasourceRepeat.data = $parse(attrs.crnRepeat)(scope);
+        }
+        element.attr('ng-repeat', 'rowData in datasourceRepeat.data');
+
+      }
+
+      var tagName = element[0].tagName;
+      $compile(element, null, 9999998)(scope);
+      scope.$watchCollection('datasourceRepeat.data', function (newVal, oldVal) {
+        if (tagName.toLowerCase() == "ion-slide") {
+          var $ionicSlideBoxDelegate = $injector.get('$ionicSlideBoxDelegate');
+          $ionicSlideBoxDelegate.slide(0);
+          $ionicSlideBoxDelegate.update();
+        }
+      });
+    }
+  };
+})
+
 .directive('crnDatasource', ['DatasetManager', '$parse', '$rootScope', function(DatasetManager, $parse, $rootScope) {
   return {
     restrict: 'A',
     scope: true,
-    priority: 9999999,
+    priority: 9999998,
     link: function(scope, element, attrs) {
       scope.data = DatasetManager.datasets;
       if (scope.data[attrs.crnDatasource]) {

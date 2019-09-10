@@ -25,9 +25,6 @@ window.addEventListener('message', function(event) {
   }
 
   var parsePermission = function(perm) {
-
-
-
     var result = {
       visible: {
         public: true
@@ -257,7 +254,7 @@ window.addEventListener('message', function(event) {
 
   .directive('qr', ['$window', function($window){
     return {
-      restrict: 'A',
+      restrict: 'EA',
       require: '^ngModel',
       template: '<canvas ng-hide="image"></canvas><img ng-if="image" ng-src="{{canvasImage}}"/>',
       link: function postlink(scope, element, attrs, ngModel){
@@ -496,6 +493,11 @@ window.addEventListener('message', function(event) {
         var $elem = $(elem);
         var starArray = []
 
+        if(attrs.xattrDefaultValue){
+          ngModelCtrl.$viewValue = 0; //set new view value
+          ngModelCtrl.$commitViewValue();
+        }
+
         for (var i=1;i<=5;i++) {
           starArray.push($(elem).find('i').get(i - 1));
           $(starArray[i-1]).addClass(attrs.iconOff || "fa fa-star-o");
@@ -542,9 +544,111 @@ window.addEventListener('message', function(event) {
     }
   }])
 
-  .directive('cronappFilter', function($compile) {
+  .directive('ngInitialValue', function($parse) {
+      return {
+          restrict: 'A',
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModelCtrl) {
+              if (attrs.ngInitialValue) {
+                  var modelGetter = $parse(attrs['ngModel']);
+                  var modelSetter = modelGetter.assign;
+                  var evaluated;
+
+                  try {
+                      evaluated = scope.$eval(attrs.ngInitialValue);
+                  } catch (e) {
+                      evaluated = attrs.ngInitialValue;
+                  }
+
+                  // verifica se é um checkbox para transformar para um valor booleano
+                  if (element[0].type == 'checkbox' && evaluated) {
+                      evaluated = ('' + evaluated).toLowerCase() == 'true';
+                  }
+
+                  modelSetter(scope, evaluated);
+              }
+          }
+      }
+  })
+
+  .directive('crnAllowNullValues', [function () {
+      return {
+          restrict: 'A',
+          require: '?ngModel',
+          link: function (scope, el, attrs, ctrl) {
+              ctrl.$formatters = [];
+              ctrl.$parsers = [];
+              if (attrs.crnAllowNullValues === 'true') {
+                  ctrl.$render = function () {
+                      var viewValue = ctrl.$viewValue;
+                      el.data('checked', viewValue);
+                      switch (viewValue) {
+                          case true:
+                              el.attr('indeterminate', false);
+                              el.prop('checked', true);
+                              break;
+                          case false:
+                              el.attr('indeterminate', false);
+                              el.prop('checked', false);
+                              break;
+                          default:
+                              el.attr('indeterminate', true);
+                      }
+                  };
+                  el.bind('click', function () {
+                      var checked;
+                      switch (el.data('checked')) {
+                          case false:
+                              checked = true;
+                              break;
+                          case true:
+                              checked = null;
+                              break;
+                          default:
+                              checked = false;
+                      }
+                      ctrl.$setViewValue(checked);
+                      scope.$apply(ctrl.$render);
+                  });
+              } else if (attrs.crnAllowNullValues === 'false'){
+                  ctrl.$render = function () {
+                      var viewValue = ctrl.$viewValue;
+                      if(viewValue === undefined || viewValue === null){
+                          ctrl.$setViewValue(false);
+                          viewValue = false;
+                      }
+                      el.data('checked', viewValue);
+                      switch (viewValue) {
+                          case true:
+                              el.attr('indeterminate', false);
+                              el.prop('checked', true);
+                              break;
+                          default:
+                              el.attr('indeterminate', false);
+                              el.prop('checked', false);
+                              break;
+                      }
+                  };
+                  el.bind('click', function () {
+                      var checked;
+                      switch (el.data('checked')) {
+                          case false:
+                              checked = true;
+                              break;
+                          default:
+                              checked = false;
+                      }
+                      ctrl.$setViewValue(checked);
+                      scope.$apply(ctrl.$render);
+                  });
+              }
+          }
+      };
+  }])
+
+      .directive('cronappFilter', function($compile) {
     var setFilterInButton = function($element, bindedFilter, operator) {
-      var fieldset = $element.closest('fieldset');
+      var fieldset = $element.closest('div');
       if (!fieldset)
         return;
       var button = fieldset.find('button[cronapp-filter]');
@@ -576,7 +680,7 @@ window.addEventListener('message', function(event) {
     }
 
     var makeAutoPostSearch = function($element, bindedFilter, datasource, attrs) {
-      var fieldset = $element.closest('fieldset');
+      var fieldset = $element.closest('div');
       if (fieldset && fieldset.length > 0) {
         var button = fieldset.find('button[cronapp-filter]');
         if (button && button.length > 0) {
@@ -599,7 +703,7 @@ window.addEventListener('message', function(event) {
       if (attrs.crnDatasource) {
         datasource = eval(attrs.crnDatasource);
       } else {
-        var fieldset = $element.closest('fieldset');
+        var fieldset = $element.closest('div');
         if (!fieldset)
           return;
         var button = fieldset.find('button[cronapp-filter]');
@@ -886,10 +990,9 @@ window.addEventListener('message', function(event) {
   .directive('cronList', ['$compile', function($compile){
     'use strict';
 
-    const TEMPLATE = '\
-               <ion-list can-swipe="listCanSwipe"> \
+    let TEMPLATE = '\
+               <ion-list type="" can-swipe="listCanSwipe"> \
             	   <ion-item class="item" ng-repeat="rowData in datasource"> \
-              	   <div class="item-avatar"></div> \
               	 </ion-item> \
                </ion-list> \
                <ion-infinite-scroll></ion-infinite-scroll> \
@@ -902,8 +1005,9 @@ window.addEventListener('message', function(event) {
     var buildFormat = function(column) {
       var result = '';
 
-      if (column.format || column.type != 'string' && column.type != 'text') {
-        result = ' | mask: "' + (column.type||column.format) + '":"'+column.type+'"';
+      result = ' | mask: "' + column.type + '"';
+      if(column.format){
+        result = ' | mask: "' + column.format + '":"'+column.type+'"';
       }
 
       return result;
@@ -915,7 +1019,7 @@ window.addEventListener('message', function(event) {
       if (first) {
         result = '<h2>{{rowData.' + column.field + buildFormat(column) + '}}</h2>';
       } else {
-        result = '<p>{{rowData.' + column.field + buildFormat(column) + '}}</p>';
+        result = '<h3 class="dark">{{rowData.' + column.field + buildFormat(column) + '}}</h3>';
       }
 
       return result;
@@ -926,8 +1030,8 @@ window.addEventListener('message', function(event) {
     }
 
     var addDefaultButton = function(dataSourceName, column) {
-      const EDIT_TEMPLATE = '<ion-option-button class="button-positive" ng-click="' + getEditCommand(dataSourceName) + '"><i class="icon ion-edit"></i></ion-option-button>';
-      const DELETE_TEMPLATE = '<ion-option-button class="button-assertive" ng-click="' + dataSourceName + '.remove(rowData)"><i class="icon ion-trash-a"></i></ion-option-button>';
+      const EDIT_TEMPLATE = '<ion-option-button class="button-positive ion-edit" ng-click="' + getEditCommand(dataSourceName) + '"><span>edit</span></ion-option-button>';
+      const DELETE_TEMPLATE = '<ion-option-button class="button-assertive ion-trash-a" ng-click="' + dataSourceName + '.remove(rowData)"><span>delete</span></ion-option-button>';
 
       if (column.command == 'edit|destroy') {
         return EDIT_TEMPLATE.concat(DELETE_TEMPLATE);
@@ -938,12 +1042,20 @@ window.addEventListener('message', function(event) {
       }
     }
 
-    var addImage = function(column) {
-      return '<div class="custom-item-avatar-imagem" style="background-image:url(\'data:image/png;base64,{{rowData.' + column.field + '}}\')"></div>';
+    var addImage = function(column, imageDirection, iconDirection, iconTemplate, bothDirection, imageType) {
+      let extraClassToAdd = ''
+      if(iconTemplate && imageType && bothDirection){
+        extraClassToAdd = 'image-to-' + bothDirection + '-' + imageType;
+      }
+      return '<img ng-src="data:image/png;base64,{{rowData.' + column.field + '}}" class="' + extraClassToAdd + '" ></img>';
     }
 
     var addImageLink = function(column) {
-      return '<div class="custom-item-avatar-imagem" style="background-image:url(\'{{rowData.' + column.field + '}}\')"></div>';
+      return '<img style="background-image:url(\'{{rowData.' + column.field + '}}\')"></img>';
+    }
+
+    var addIcon = function(column, icon) {
+      return '<i class="' + icon + '" xattr-theme="dark"></i>';
     }
 
     var encodeHTML = function(value) {
@@ -987,9 +1099,9 @@ window.addEventListener('message', function(event) {
     }
 
     var addBlockly = function(column) {
-      return '<ion-option-button class="button-dark" ng-click="'
+      return '<ion-option-button class="button-dark ion-navigate" ng-click="'
           + generateBlocklyCall(column.blocklyInfo)
-          + '"><i class="icon ion-navigate"></i></ion-option-button>';
+          + '"></ion-option-button>';
     }
 
     var isImage = function(fieldName, schemaFields) {
@@ -1004,7 +1116,7 @@ window.addEventListener('message', function(event) {
     }
 
     var addCustomButton = function(column) {
-      return `<ion-option-button class="button-dark" ng-click="listButtonClick($index, rowData, '${window.stringToJs(column.execute)}', $event)"><i class=" ${column.iconClass}"></i> ${column.label}</ion-option-button> `
+      return `<ion-option-button class="button-dark ${column.iconClass}" ng-click="listButtonClick($index, rowData, '${window.stringToJs(column.execute)}', $event)">${column.label}</ion-option-button> `
     }
 
     var isImage = function(fieldName, schemaFields) {
@@ -1040,6 +1152,10 @@ window.addEventListener('message', function(event) {
           optionsList = JSON.parse(attrs.options);
           dataSourceName = optionsList.dataSourceScreen.name;
           var dataSource = eval(optionsList.dataSourceScreen.name);
+          var imageDirection = optionsList.imagePosition ? optionsList.imagePosition : "left";
+          var iconDirection = optionsList.iconPosition ? optionsList.iconPosition : "right";
+          var iconTemplate  = optionsList.icon ? addIcon(column, optionsList.icon) : '';
+          var bothDirection = imageDirection === 'left' && iconDirection === 'left' ? 'left' : (imageDirection === 'right' && iconDirection === 'right' ? 'right' : '');
 
           scope.listButtonClick = function(idx, rowData, fn, event) {
 
@@ -1074,13 +1190,14 @@ window.addEventListener('message', function(event) {
             var column = optionsList.columns[i];
             if (column.visible) {
               if (column.field && column.dataType == 'Database') {
-                if (!addedImage && isImage(column.field, optionsList.dataSourceScreen.entityDataSource.schemaFields)) {
-                  image = addImage(column);
+                if (!addedImage && isImage(column.field, optionsList.dataSourceScreen.entityDataSource.schemaFields) && optionsList.imageType !== "do-not-show") {
+                  image = addImage(column, imageDirection, iconDirection, iconTemplate, bothDirection, optionsList.imageType);
                   addedImage = true;
                 } else if (!addedImage && (column.type == 'image')) {
                   image = addImageLink(column);
                   addedImage = true;
-                } else {
+                }
+                else {
                   content = content.concat(addDefaultColumn(column, (i == 0)));
                   if (column.filterable) {
                     searchableField = (searchableField != null) ? searchableField + ';' + column.field : column.field;
@@ -1109,6 +1226,7 @@ window.addEventListener('message', function(event) {
         } else {
           templateDyn = $(TEMPLATE);
         }
+        templateDyn.attr("type", optionsList.listType);
         $(element).html(templateDyn);
 
         var ionItem = $(element).find('ion-item');
@@ -1122,6 +1240,18 @@ window.addEventListener('message', function(event) {
           ionItem.attr('ng-click', "listButtonClick($index, rowData, \'"+window.stringToJs(attrs.ngClick)+"\', $event)");
         }
 
+        if(optionsList.icon){
+          ionItem.addClass("item-icon-" + iconDirection);
+        }
+
+        if(optionsList.imageType === "thumbnail"){
+          ionItem.addClass("item-thumbnail-" + imageDirection);
+        }
+
+        if(addedImage && (!optionsList.imageType || optionsList.imageType === "avatar")){
+          ionItem.addClass("item-avatar-" + imageDirection);
+        }
+
         const attrsExcludeds = ['options','ng-repeat','ng-click'];
         const filteredItems = Object.values(attrs.$attr).filter(function(item) {
           return !attrsExcludeds.includes(item);
@@ -1130,11 +1260,20 @@ window.addEventListener('message', function(event) {
           ionItem.attr(filteredItems[o], attrs[o]);
         }
 
-        content = '<div class="item-list-detail">' + content + '<\div>';
-        var ionAvatar = $(element).find('.item-avatar');
-        ionAvatar.append(image);
-        ionAvatar.append(content);
-        ionAvatar.append(buttons);
+        let extraClassToAdd = ''
+        if(optionsList.imageType && bothDirection && addedImage && iconTemplate){
+            extraClassToAdd = 'text-to-' + bothDirection + '-' + optionsList.imageType;
+        }
+        content = '<div class="' + attrs.xattrTextPosition + ' ' + extraClassToAdd + '">' + content + iconTemplate + '<\div>';
+        if(image){
+          ionItem.append(image);
+          ionItem.append(content);
+          ionItem.append(buttons);
+        }
+        else{
+          ionItem.append(content);
+          ionItem.append(buttons);
+        }
 
         scope.nextPageInfinite = function() {
           dataSource.nextPage();
@@ -1225,6 +1364,59 @@ window.addEventListener('message', function(event) {
         }
       }
     }
+  }])
+
+  .directive('cronMobileMenu', ['$compile', '$translate', function($compile, $translate){
+      'use strict';
+
+      var populateMenu = function(menuOptions) {
+          var template = '';
+          if (menuOptions && menuOptions!= null && menuOptions.subMenuOptions && menuOptions.subMenuOptions != null && Array.isArray(menuOptions.subMenuOptions)){
+              menuOptions.subMenuOptions.forEach(function(menu) {
+                  var security = (menu.security && menu.security != null) ? ' cronapp-security="' + menu.security + '" ' : '';
+                  var action = (menu.action && menu.action != null) ? ' ng-click="' + menu.action + '" ' : '';
+                  var hide = (menu.hide && menu.hide != null) ? ' ng-hide="' + menu.hide + '" ' : '';
+                  var iconClass = (menu.iconClass && menu.iconClass != null) ? menu.iconClass : '';
+                  var imagePosition = (menu.imagePosition && menu.imagePosition != null) ? 'item-icon-' + menu.imagePosition : '';
+                  var textPosition = (menu.textPosition && menu.textPosition != null) ? 'text-' + menu.textPosition : '';
+                  var contentTheme = (menu.contentTheme && menu.contentTheme != null) ? menu.contentTheme : '';
+                  var iconTheme = (menu.iconTheme && menu.iconTheme != null) ? menu.iconTheme : '';
+                  var title = $translate.instant(menu.title);
+
+                  template = template  + '\
+                    <a menu-close="" class="item ' + imagePosition + '" ' + action + security + hide + '> \
+                      <i class="' + iconClass + ' ' + iconTheme + '" style="font-size: 150%"></i> \
+                      <div class="item-content ' + textPosition + '"> \
+                          <h2 class="' + contentTheme + '">' + title + '</h2> \
+                      </div> \
+                    </a> ';
+              })
+          }
+          return template;
+      }
+
+      return {
+          restrict: 'EA',
+          link: function(scope, element, attrs) {
+              var TEMPLATE_MAIN = '<ul class="nav navbar-nav" style="float:none"></ul>';
+              var options = {};
+              try {
+                  options = JSON.parse(attrs.options);
+              } catch(e) {
+                  console.log('CronMobileMenu: Invalid configuration!')
+              }
+
+              var main = $(TEMPLATE_MAIN);
+              var menus = populateMenu(options);
+              main.append(menus);
+
+              var newElement = angular.element(main);
+              element.html('');
+              element.append(main);
+              element.attr('id' , null);
+              $compile(newElement)(scope);
+          }
+      }
   }])
 
 }(app));
@@ -1619,3 +1811,4 @@ function transformText() {
     }
   }
 }
+

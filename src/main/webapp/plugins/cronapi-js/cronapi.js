@@ -10,9 +10,9 @@ if (window.timeZoneOffset === undefined || window.timeZoneOffset === null) {
   window.timeZoneOffset = 0;
 }
 
-if (window.fixedTimeZone) {
-  window.timeZoneOffset = window.timeZoneOffset;
-} else {
+window.systemTimeZoneOffset = window.timeZoneOffset;
+
+if (!window.fixedTimeZone) {
   window.timeZoneOffset = moment().utcOffset();
 }
 
@@ -48,13 +48,13 @@ if (window.fixedTimeZone) {
 
   this.cronapi.evalInContext = function(js) {
     var result = eval('this.cronapi.doEval('+js+')');
-    if (result && result.commands) {
-      for (var i=0;i<result.commands.length;i++) {
-        var func = eval(result.commands[i].function);
-        func.apply(this, result.commands[i].params);
+    if (result) {
+      if (result.commands) {
+        for (var i = 0; i < result.commands.length; i++) {
+          var func = eval(result.commands[i].function);
+          func.apply(this, result.commands[i].params);
+        }
       }
-    }
-    if (result && result.value) {
       return result.value;
     }
   }
@@ -371,7 +371,7 @@ if (window.fixedTimeZone) {
       if(fieldValue && Object.keys(fieldValue).length !== 0) {
         var keys = Object.keys(fieldValue);
         keys.forEach(function(key){
-          if (fieldValue[key]) {
+          if (fieldValue[key] !== undefined && fieldValue[key] !== null) {
             if (!fields.vars) {
               fields.vars = {};
             }
@@ -543,15 +543,17 @@ if (window.fixedTimeZone) {
     return result;
   };
 
-  /**
-   * @type function
-   * @name {{callServerBlocklyAsync}}
-   * @nameTags callServerBlocklyAsync
-   * @description {{callServerBlocklyAsync}}
-   * @param {ObjectType.OBJECT} params {{params}}
-   * @wizard procedures_callblockly_callreturn_async
-   * @returns {ObjectType.OBJECT}
-   */
+    /**
+     * @type function
+     * @name {{callServerBlocklyAsync}}
+     * @nameTags callServerBlocklyAsync
+     * @description {{callServerBlocklyAsync}}
+     * @param {ObjectType.STRING} classNameWithMethod {{classNameWithMethod}}
+     * @param {ObjectType.OBJECT} callback {{callbackFinish}}
+     * @param {ObjectType.LIST} params {{params}}
+     * @wizard procedures_callblockly_callreturn_async
+     * @returns {ObjectType.OBJECT}
+     */
   this.cronapi.util.callServerBlocklyAsynchronous = function(classNameWithMethod , callback , params) {
     if(classNameWithMethod != '' && typeof callback == 'function'){
       var params = [];
@@ -739,15 +741,20 @@ if (window.fixedTimeZone) {
    * @param {ObjectType.LONG} initial_time {{scheduleExecutionParam1}}
    * @param {ObjectType.LONG} interval_time {{scheduleExecutionParam2}}
    * @param {ObjectType.STRING} measurement_unit {{scheduleExecutionParam3}}
+   * @param {ObjectType.BOOLEAN} stopExecutionAfterScopeDestroy {{stopExecutionAfterScopeDestroyLabel}}
    */
-  this.cronapi.util.scheduleExecution = function( /** @type {ObjectType.STATEMENT} @description {{statement}} */ statements ,  /** @type {ObjectType.LONG} */  initial_time ,  /** @type {ObjectType.LONG} */  interval_time , /** @type {ObjectType.STRING} @description {{scheduleExecutionParam3}} @blockType util_dropdown @keys seconds|milliseconds|minutes|hours @values {{seconds}}|{{millisecondss}}|{{minutes}}|{{hours}}  */ measurement_unit ) {
+  this.cronapi.util.scheduleExecution = function( /** @type {ObjectType.STATEMENT} @description {{statement}} */ statements ,  /** @type {ObjectType.LONG} */  initial_time ,  /** @type {ObjectType.LONG} */  interval_time , /** @type {ObjectType.STRING} @description {{scheduleExecutionParam3}} @blockType util_dropdown @keys seconds|milliseconds|minutes|hours @values {{seconds}}|{{millisecondss}}|{{minutes}}|{{hours}}  */ measurement_unit, /** @type {ObjectType.BOOLEAN} @description {{stopExecutionAfterScopeDestroyLabel}} @blockType util_dropdown @keys true|false @values {{true}}|{{false}}  */  stopExecutionAfterScopeDestroy ) {
+
+    stopExecutionAfterScopeDestroy = stopExecutionAfterScopeDestroy || true;
+    stopExecutionAfterScopeDestroy = (stopExecutionAfterScopeDestroy === 'true' || stopExecutionAfterScopeDestroy === true);
+
     var factor = 1;
 
-    if (measurement_unit == 'seconds') {
+    if (measurement_unit === 'seconds') {
       factor = 1000;
-    } else if(measurement_unit =='minutes') {
+    } else if(measurement_unit ==='minutes') {
       factor = 60000;
-    } else if(measurement_unit =='hours') {
+    } else if(measurement_unit ==='hours') {
       factor = 3600000;
     }
 
@@ -761,10 +768,12 @@ if (window.fixedTimeZone) {
       intervalId = setInterval(statements , interval_time) ;
     }.bind(this), initial_time);
 
-    this.$on('$destroy', function() {
-      try { clearTimeout(timeoutId); } catch(e) {}
-      try { clearInterval(intervalId); } catch(e) {}
-    });
+    if(stopExecutionAfterScopeDestroy){
+      this.$on('$destroy', function() {
+        try { clearTimeout(timeoutId); } catch(e) {}
+        try { clearInterval(intervalId); } catch(e) {}
+      });
+    }
 
   };
 
@@ -1902,21 +1911,6 @@ if (window.fixedTimeZone) {
     return this.cronapi.dateTime.getMomentObj(date).toDate();
   };
 
-  /**
-   * @type function
-   * @name {{updateDate}}
-   * @nameTags setDate|updateDate
-   * @description {{functionToUpdateDate}}
-   * @param {ObjectType.DATETIME} value {{ObjectType.DATETIME}}
-   * @param {ObjectType.LONG} year {{year}}
-   * @param {ObjectType.LONG} month {{month}}
-   * @param {ObjectType.LONG} day {{day}}
-   * @param {ObjectType.LONG} hour {{hour}}
-   * @param {ObjectType.LONG} minute {{minute}}
-   * @param {ObjectType.LONG} second {{second}}
-   * @param {ObjectType.LONG} millisecond {{millisecond}}
-   * @returns {ObjectType.DATETIME}
-   */
   this.cronapi.dateTime.updateDate = function(value, year, month, day, hour, minute, second, millisecond) {
     var date = this.cronapi.dateTime.getMomentObj(value).toDate();
     if (date && !isNaN(date.getTime())) {
@@ -1936,6 +1930,50 @@ if (window.fixedTimeZone) {
   };
 
   /**
+   * @type function
+   * @name {{updateDate}}
+   * @nameTags setDate|updateDate
+   * @description {{functionToUpdateDate}}
+   * @param {ObjectType.DATETIME} date {{ObjectType.DATETIME}}
+   * @param {ObjectType.STRING} type {{attribute}}
+   * @param {ObjectType.LONG} value {{value}}
+   * @returns {ObjectType.DATETIME}
+   */
+  this.cronapi.dateTime.updateNewDate = function(date, /** @type {ObjectType.STRING} @description {{attribute}} @blockType util_dropdown @keys year|month|day|hour|minute|second|millisecond  @values {{year}}|{{month}}|{{day}}|{{hour}}|{{minute}}|{{second}}|{{millisecond}}  */ type, value ) {
+    var updatedDate = this.cronapi.dateTime.getMomentObj(date).toDate();
+    if (updatedDate && !isNaN(updatedDate.getTime())) {
+      switch(type){
+        case "year":
+          updatedDate.setYear(value);
+          break;
+        case "month":
+          updatedDate.setMonth(value - 1);
+          break;
+        case "day":
+          updatedDate.setDate(value);
+          break;
+        case "hour":
+          updatedDate.setHours(value);
+          break;
+        case "minute":
+          updatedDate.setMinutes(value);
+          break;
+        case "second":
+          updatedDate.setSeconds(value);
+          break;
+        case "millisecond":
+          updatedDate.setMilliseconds(value);
+          break;
+      }
+    }
+    else{
+      this.cronapi.screen.notify('error',this.cronapi.i18n.translate("InvalidDate",[  ]));
+      return;
+    }
+    return this.cronapi.dateTime.getMomentObj(updatedDate).toDate();
+  };
+
+  /**
    * @category CategoryType.TEXT
    * @categoryTags TEXT|text
    */
@@ -1947,6 +1985,16 @@ if (window.fixedTimeZone) {
    */
   this.cronapi.text.prompt = function(/** @type {ObjectType.STRING} @defaultValue abc*/ value) {
     return null;
+  }
+
+     /**
+   * @type function
+   * @name {{newline}}
+   * @description {{newlineDescription}}
+   * @returns {ObjectType.STRING}
+   */
+  this.cronapi.text.newline = function() {
+    return "\n";
   }
 
   /**
@@ -3246,7 +3294,6 @@ if (window.fixedTimeZone) {
           preferFrontCamera : false,
           showFlipCameraButton : true,
           showTorchButton : true,
-          torchOn: true,
           saveHistory: true,
           prompt : message,
           resultDisplayDuration: 500,
