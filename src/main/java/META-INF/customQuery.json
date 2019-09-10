@@ -520,5 +520,64 @@
     },
     "errorHandles": {},
     "serviceUrl": "api/cronapi/odata/v2/query493831/"
+  },
+  "query870036": {
+    "customId": "query870036",
+    "queryName": "noticiasSeguras",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "Noticias",
+    "entityFullName": "app.entity.Noticias",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "Noticias",
+          "alias": "n",
+          "namespace": "app.entity.Noticias"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "n"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "POSTAuthorities": [
+        "Administrators"
+      ],
+      "PUT": true,
+      "PUTAuthorities": [
+        "Administrators"
+      ],
+      "DELETE": true,
+      "DELETEAuthorities": [
+        "Administrators"
+      ],
+      "FILTER": true,
+      "COUNT": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query870036/"
   }
 }
