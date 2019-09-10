@@ -577,7 +577,9 @@
     "calcFields": {},
     "calcFieldsSecurity": {},
     "calcFieldsProperties": {},
-    "errorHandles": {},
+    "errorHandles": {
+      "primaryKey": "Verifique se não existe outro registro com o mesmo ID"
+    },
     "serviceUrl": "api/cronapi/odata/v2/query870036/"
   }
 }
