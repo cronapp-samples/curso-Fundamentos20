@@ -520,5 +520,71 @@
     },
     "errorHandles": {},
     "serviceUrl": "api/cronapi/odata/v2/query493831/"
+  },
+  "query212442": {
+    "customId": "query212442",
+    "queryName": "marcasFIPE",
+    "sourceType": "blockly",
+    "blockly": {
+      "blocklyClass": "blockly.MarcasFIPE",
+      "blocklyMethod": "obter",
+      "blocklyLanguage": "java",
+      "blocklyJson": {
+        "namespace": "blockly.MarcasFIPE",
+        "sourcePath": "src/main/java/blockly/marcasFIPE.blockly",
+        "language": "java",
+        "class": "blockly.MarcasFIPE",
+        "methods": [
+          {
+            "name": "obter",
+            "hasReturn": "true",
+            "params": [
+              "Dados"
+            ]
+          }
+        ]
+      },
+      "blocklyGETMethod": "obter",
+      "blocklyPOSTMethod": "obter",
+      "blocklyPUTMethod": "obter",
+      "blocklyDELETEMethod": "obter",
+      "blocklyFILTERMethod": "obter",
+      "blocklyCOUNTMethod": "obter"
+    },
+    "query": "",
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true,
+      "COUNT": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {
+      "fipe_name": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      },
+      "order": {
+        "type": "String"
+      },
+      "key": {
+        "type": "String"
+      },
+      "id": {
+        "type": "String"
+      }
+    },
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/query/query212442/"
   }
 }
