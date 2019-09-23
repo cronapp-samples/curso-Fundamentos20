@@ -520,5 +520,64 @@
     },
     "errorHandles": {},
     "serviceUrl": "api/cronapi/odata/v2/query493831/"
+  },
+  "query120298": {
+    "customId": "query120298",
+    "queryName": "carroscustokm",
+    "sourceType": "blockly",
+    "blockly": {
+      "type": "server",
+      "blocklyMethod": "criarLista",
+      "blocklyClass": "blockly.ListaMapas",
+      "blocklyLanguage": "java",
+      "blocklyParams": [],
+      "blocklyJson": {
+        "namespace": "blockly.ListaMapas",
+        "sourcePath": "src/main/java/blockly/ListaMapas.blockly",
+        "language": "java",
+        "methods": [
+          {
+            "name": "criarLista",
+            "hasReturn": "true",
+            "params": []
+          }
+        ]
+      },
+      "blocklyGETMethod": "criarLista",
+      "blocklyPOSTMethod": "criarLista",
+      "blocklyPUTMethod": "criarLista",
+      "blocklyDELETEMethod": "criarLista",
+      "blocklyFILTERMethod": "criarLista",
+      "blocklyCOUNTMethod": "criarLista"
+    },
+    "query": "",
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": false,
+      "PUT": false,
+      "DELETE": false,
+      "FILTER": false,
+      "COUNT": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {
+      "marca": {
+        "type": "String"
+      },
+      "modelo": {
+        "type": "String"
+      },
+      "custokm": {
+        "type": "Double"
+      }
+    },
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/query/query120298/"
   }
 }
