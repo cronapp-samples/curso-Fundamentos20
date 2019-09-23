@@ -7,6 +7,7 @@
       "chkApi": false,
       "dataSource": "jdbc/main",
       "disableCache": false,
+      "generationType": "drop-and-create-tables",
       "id": "paperCell",
       "namespace": "app",
       "position": {
@@ -337,7 +338,9 @@
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         },
         {
           "name": "placa",
@@ -351,7 +354,7 @@
           "mask": "AAA-9999",
           "isPrimaryKey": false,
           "isUniqueKey": false,
-          "isNullable": true,
+          "isNullable": false,
           "pkType": "",
           "multitenantContext": "",
           "jsonIgnore": false,
@@ -360,7 +363,9 @@
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         },
         {
           "name": "marca",
@@ -374,7 +379,7 @@
           "mask": "",
           "isPrimaryKey": false,
           "isUniqueKey": false,
-          "isNullable": true,
+          "isNullable": false,
           "pkType": "",
           "multitenantContext": "",
           "jsonIgnore": false,
@@ -383,7 +388,9 @@
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         },
         {
           "name": "modelo",
@@ -397,7 +404,7 @@
           "mask": "",
           "isPrimaryKey": false,
           "isUniqueKey": false,
-          "isNullable": true,
+          "isNullable": false,
           "pkType": "",
           "multitenantContext": "",
           "jsonIgnore": false,
@@ -406,7 +413,9 @@
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         },
         {
           "name": "ano",
@@ -420,7 +429,7 @@
           "mask": "",
           "isPrimaryKey": false,
           "isUniqueKey": false,
-          "isNullable": true,
+          "isNullable": false,
           "pkType": "",
           "multitenantContext": "",
           "jsonIgnore": false,
@@ -429,26 +438,34 @@
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         },
         {
           "name": "user",
           "type": "User",
           "dbName": "fk_user",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
           "label": "",
           "mask": "",
           "isPrimaryKey": false,
           "isUniqueKey": false,
-          "isNullable": true,
-          "multitenantContext": "",
+          "isNullable": false,
           "pkType": "",
-          "isIgnore": false,
-          "isTransien": false,
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
           "isInsertable": true,
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         }
       ],
       "generateView": "Auto",
