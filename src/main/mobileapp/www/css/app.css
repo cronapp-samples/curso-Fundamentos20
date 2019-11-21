@@ -2,3 +2,8 @@ ion-content button {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.style5696 { 
+  background-image: url("../img/gas-mobile.png");
+  background-size: cover;
+}

@@ -1,5 +1,5 @@
 <ion-view cache-view="false" can-swipe-back="false" class="pane login-bg" data-container="true">
-  <ion-content class="scroll-content center-content-vertically" data-component="crn-ion-content">
+  <ion-content class="scroll-content center-content-vertically style5696" data-component="crn-ion-content">
     <div class="list safe-top" data-container="true">
       <div class="col text-center">
         <img src="img/logo.svg" class="component-holder logo" style="display: block; margin-left:auto; margin-right:auto;" xattr-position="display: block; margin-left:auto; margin-right:auto;" data-component="crn-image" id="crn-image-960683">
@@ -14,7 +14,7 @@
           <input autocomplete="current-password" type="password" placeholder="{{'Login.view.Password' | translate}}" ng-model="vars.password">
         </label>
         <label class="item">
-          <button class="button component-holder button-full button-positive" type="button" ng-click="cronapi.client('js.blockly.auth.Login.login').run(vars.username, vars.password, null)" data-component="crn-button" id="crn-button-445347" xattr-fullsize="button-full" xattr-theme="button-positive" ng-disabled="form.$invalid || vm.dataLoading">
+          <button class="button component-holder button-full button-stable" type="button" ng-click="cronapi.client('js.blockly.auth.Login.login').run(vars.username, vars.password, null)" data-component="crn-button" id="crn-button-445347" xattr-fullsize="button-full" xattr-theme="button-stable" ng-disabled="form.$invalid || vm.dataLoading">
             <i class=""></i>
             <span>{{"Login.view.Login" | translate}}</span>
           </button>
@@ -22,9 +22,23 @@
         <label class="item">
           <div ng-show="message.error" class="help-block" data-container="true">
             {{message.error}}
-          </div>
+          </div><button class="button component-holder button-full button-calm" type="button" ng-click="cronapi.client('js.blockly.auth.Usuario.abrirCadastro').run()" data-component="crn-button" id="crn-button-15131" xattr-fullsize="button-full" xattr-theme="button-calm" ng-disabled="form.$invalid || vm.dataLoading">
+            <i class="ion ion-android-add"></i>
+            <span>Cadastre-se !!</span>
+          </button>
         </label>
       </div>
     </form>
   </ion-content>
 </ion-view>
+ <script type="text/ng-template" id="modal2028"><ion-modal-view>
+   <ion-header-bar align-title="center" class="bar bar-positive" data-component="crn-ion-header-bar" xattr-theme="bar-positive">
+     <div class="buttons"> <button class="button button-left" ng-click="cronapi.client('js.blockly.auth.Usuario.fecharCadastro').run()">{{ 'Modal.view.Cancel' | translate}}</button> 
+     </div> 
+     <h1 class="title">Seus dados</h1>
+     <div class="buttons">     <button class="button button-right" ng-click="cronapi.client('js.blockly.auth.Usuario.cadastrar').run()">{{ 'Modal.view.Save' | translate}}</button> 
+     </div> 
+   </ion-header-bar>
+  <ion-content data-component="crn-ion-content" class="has-header">
+  <label class="item item-input component-holder" data-component="crn-input-inline" id="crn-input-inline-919190"><span class="input-label">Nome</span> <input type="text" ng-model="vars.nome" placeholder="João da Silva" mask="" keyboard=""></label><label class="item item-input component-holder" data-component="crn-input-inline" id="crn-input-inline-46631"><span class="input-label">Email</span> <input type="text" ng-model="vars.email" placeholder="joao@gmail.com" mask="" keyboard=""></label><label class="item item-input component-holder" data-component="crn-input-inline" id="crn-input-inline-47181"><span class="input-label">Senha</span> <input type="password" ng-model="vars.senha" placeholder="digite a senha" mask="" keyboard=""></label><label class="item item-input component-holder" data-component="crn-input-inline" id="crn-input-inline-55471"><span class="input-label">Confirme a Senha</span> <input type="password" ng-model="vars.confirmaSenha" placeholder="digite a senha novamente" mask="" keyboard=""></label></ion-content>
+  </ion-modal-view></script>

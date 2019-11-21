@@ -5,6 +5,7 @@ import cronapi.rest.security.CronappSecurity;
 import java.util.concurrent.Callable;
 
 
+
 @CronapiMetaData(type = "blockly")
 @CronappSecurity(post = "Public", get = "Public", execute = "Public", delete = "Public", put = "Public")
 public class Usuario {
@@ -26,15 +27,18 @@ public static Var criarUsuario(Var nome, Var email, Var param_senha, Var confirm
    // param
    private Var senha = param_senha;
    // end
+   private Var sucesso = Var.VAR_NULL;
 
    public Var call() throws Exception {
     if (Var.valueOf(senha.equals(confirmasenha)).getObjectAsBoolean()) {
         cronapi.database.Operations.insert(Var.valueOf("app.entity.User"),Var.valueOf("password",senha),Var.valueOf("name",nome),Var.valueOf("login",email),Var.valueOf("email",email));
         cronapi.util.Operations.callClientFunction( Var.valueOf("cronapi.screen.notify"), Var.valueOf("success"), Var.valueOf("Usuário cadastrado com sucesso!"));
+        sucesso = Var.VAR_TRUE;
     } else {
         cronapi.util.Operations.callClientFunction( Var.valueOf("cronapi.screen.notify"), Var.valueOf("error"), Var.valueOf("campos senha e confirmação estão diferentes!"));
+        sucesso = Var.VAR_FALSE;
     }
-    return Var.VAR_NULL;
+    return sucesso;
    }
  }.call();
 }
@@ -68,6 +72,7 @@ public static Var obterLoginUsuarioLogado() throws Exception {
    private Var confirmasenha = Var.VAR_NULL;
    private Var nome = Var.VAR_NULL;
    private Var email = Var.VAR_NULL;
+   private Var sucesso = Var.VAR_NULL;
    private Var dadosUsuario = Var.VAR_NULL;
 
    public Var call() throws Exception {

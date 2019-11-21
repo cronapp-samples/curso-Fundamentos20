@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><blockly formTarget="src/main/webapp/views/login.view.html" resourceType="JAVA" ruleDescription="Usuario" ruleName="Usuario" ruleSecurity="{&quot;post&quot;:&quot;Public&quot;,&quot;get&quot;:&quot;Public&quot;,&quot;execute&quot;:&quot;Public&quot;,&quot;delete&quot;:&quot;Public&quot;,&quot;put&quot;:&quot;Public&quot;}" ruleSynchronous="false" ruleTimeout="300" ruleType="I">
-  <metadata scale="1" scrollx="730.4" scrolly="-81.8" target="F[Mm;o1PFsV_l##LZLB4"/>
+<?xml version="1.0" encoding="UTF-8"?><blockly bpmnAble="false" formTarget="src/main/webapp/views/login.view.html" resourceType="JAVA" ruleDescription="Usuario" ruleName="Usuario" ruleSecurity="{&quot;post&quot;:&quot;Public&quot;,&quot;get&quot;:&quot;Public&quot;,&quot;execute&quot;:&quot;Public&quot;,&quot;delete&quot;:&quot;Public&quot;,&quot;put&quot;:&quot;Public&quot;}" ruleSynchronous="false" ruleTimeout="300" ruleType="I">
+  <metadata scale="1" scrollx="457.5999999999989" scrolly="-73.10000000000008" target="Anb:u5+^,0vLkL9QIqn5"/>
   <block colour="#995ba5" id="Anb:u5+^,0vLkL9QIqn5" origintype="procedures_defreturn" output="false" tooltip="Cria uma função que possui um valor de retorno." type="procedures_defreturn" x="-350" y="130">
     <mutation>
       <arg name="nome"/>
@@ -64,6 +64,16 @@
                     <field name="TEXT">Usuário cadastrado com sucesso!</field>
                   </shadow>
                 </value>
+                <next>
+                  <block colour="#0088ee" dependencyby="Anb:u5+^,0vLkL9QIqn5" id="Jvg?@dy_?j^s;H2`Y(F#" origintype="variables_set" output="false" tooltip="Define esta variável para o valor da entrada." type="variables_set">
+                    <field name="VAR">sucesso</field>
+                    <value name="VALUE">
+                      <block colour="#5b80a5" dependencyby="Anb:u5+^,0vLkL9QIqn5" id="c*k,@,47yrnV{cM$;_S^" origintype="logic_boolean" output="true" tooltip="Retorna verdadeiro ou falso." type="logic_boolean">
+                        <field name="BOOL">TRUE</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
               </block>
             </next>
           </block>
@@ -77,10 +87,25 @@
                 <field name="TEXT">campos senha e confirmação estão diferentes!</field>
               </shadow>
             </value>
+            <next>
+              <block colour="#0088ee" dependencyby="Anb:u5+^,0vLkL9QIqn5" id="vbpPvO41X.gU,vQ^2;mv" origintype="variables_set" output="false" tooltip="Define esta variável para o valor da entrada." type="variables_set">
+                <field name="VAR">sucesso</field>
+                <value name="VALUE">
+                  <block colour="#5b80a5" dependencyby="Anb:u5+^,0vLkL9QIqn5" id="*MnI[$2qHO3VKN^(X-Wl" origintype="logic_boolean" output="true" tooltip="Retorna verdadeiro ou falso." type="logic_boolean">
+                    <field name="BOOL">FALSE</field>
+                  </block>
+                </value>
+              </block>
+            </next>
           </block>
         </statement>
       </block>
     </statement>
+    <value name="RETURN">
+      <block colour="#0088ee" dependencyby="Anb:u5+^,0vLkL9QIqn5" id="XKt+U}.36}N/0m]!x=N-" origintype="variables_get" output="true" tooltip="Retorna o valor desta variável." type="variables_get">
+        <field name="VAR">sucesso</field>
+      </block>
+    </value>
   </block>
   <block colour="#fca03b" id="F[Mm;o1PFsV_l##LZLB4" origintype="procedures_defreturn" output="false" tooltip="Cria uma função que possui um valor de retorno." type="procedures_defreturn" x="-592" y="158">
     <field name="NAME">obterIdUsuarioLogado</field>
