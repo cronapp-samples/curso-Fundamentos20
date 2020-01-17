@@ -1,0 +1,13 @@
+<ion-view class="pane">
+  <ion-header-bar align-title="center" class="bar bar-positive" xattr-theme="bar-positive" data-component="crn-ion-header-bar">
+    <div class="buttons buttons-left header-item">
+      <button class="button button-clear" menu-toggle="left" data-component="crn-button" xattr-type="button-clear"> <i class="icon ion-navicon"></i> </button>
+    </div>
+    <h1 class="title">Meu local</h1>
+    <div class="buttons buttons-right header-item">
+      <button class="button button-clear" menu-toggle="right" data-component="crn-button" xattr-type="button-clear"> <i class="icon ion-navicon"></i> </button>
+    </div>
+  </ion-header-bar>
+  <ion-content data-component="crn-ion-content" class="scroll-content has-header">
+  <label class="item item-input component-holder" data-component="crn-input" id="crn-input-920885"><input id="crn-input7235" type="text" placeholder="Latitude" ng-model="vars.lat" mask="" keyboard=""></label><label class="item item-input component-holder" data-component="crn-input" id="crn-input-44021"><input id="crn-input723563521" type="text" placeholder="Longitude" ng-model="vars.long" mask="" keyboard=""></label><button class="button button-block button-positive component-holder" type="submit" xattr-fullsize="button-block" xattr-theme="button-positive" ng-click="cronapi.client('js.blockly.maps.MeuLocal.ObterCoordenadas').run()" data-component="crn-button" id="crn-button-777676"><i class="fa fa-map-marker"></i> <span>Obter coordenadas</span></button><button class="button button-block button-positive component-holder" type="submit" xattr-fullsize="button-block" xattr-theme="button-positive" ng-click="cronapi.client('js.blockly.maps.MeuLocal.desenharMapa').run()" data-component="crn-button" id="crn-button-72531"><i class="fa fa-map-marker"></i> <span>Desenhar mapa</span></button><div class="component-holder ng-binding ng-scope" data-component="crn-google-maps" id="crn-google-maps-846725"><div id="map3277" token="AIzaSyBI_Tv8p2fOXPunrSqmTWnhjt5j4PVDLHM" style="height: 400px;" class=""></div></div></ion-content>
+</ion-view>

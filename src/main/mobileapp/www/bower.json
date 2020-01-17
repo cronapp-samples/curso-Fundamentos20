@@ -25,6 +25,10 @@
   "dependencies": {
     "cronapp-framework-mobile-js": "2.3.4",
     "cronapp-common-js": "2.3.2",
-    "cronapi-js": "2.3.0"
+    "cronapi-js": "2.3.3",
+    "cronapp-google-maps": "0.0.11"
+  },
+  "resolutions": {
+    "angular": ">=1.2.0 <1.8.0"
   }
 }
