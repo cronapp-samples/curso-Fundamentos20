@@ -714,25 +714,29 @@
         "cep:java.lang.String",
         "endereco:java.lang.String",
         "cidade:java.lang.String",
-        "uf:java.lang.String"
+        "uf:java.lang.String",
+        "coord_lat:java.lang.String",
+        "coord_long:java.lang.String",
+        "preco_litro:java.lang.String",
+        "custo_km:java.lang.String"
       ],
       "attrs": {
         ".uml-class-attrs-rect": {
-          "height": 150,
+          "height": 230,
           "transform": "translate(0,50)"
         },
         ".uml-class-attrs-text": {
           "font-size": 11,
-          "text": "id\nposto\ncep\nendereco\ncidade\nuf\n"
+          "text": "id\nposto\ncep\nendereco\ncidade\nuf\ncoord_lat\ncoord_long\npreco_litro\ncusto_km\n"
         },
         ".uml-class-attrs-value": {
           "font-size": 11,
-          "ref-x": 80.15625,
-          "text": "Texto\nTexto\nTexto\nTexto\nTexto\nTexto\n"
+          "ref-x": 88.71875,
+          "text": "Texto\nTexto\nTexto\nTexto\nTexto\nTexto\nTexto\nTexto\nTexto\nTexto\n"
         },
         ".uml-class-methods-rect": {
           "height": 30,
-          "transform": "translate(0,200)"
+          "transform": "translate(0,280)"
         },
         ".uml-class-methods-text": {
           "fill": "#0066FF",
@@ -776,7 +780,9 @@
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         },
         {
           "name": "posto",
@@ -799,7 +805,9 @@
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         },
         {
           "name": "cep",
@@ -822,7 +830,9 @@
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         },
         {
           "name": "endereco",
@@ -845,7 +855,9 @@
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         },
         {
           "name": "cidade",
@@ -868,7 +880,9 @@
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         },
         {
           "name": "uf",
@@ -891,7 +905,109 @@
           "isUpdatable": true,
           "isEncryption": false,
           "referencedColumnName": "",
-          "isSearchable": false
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
+        },
+        {
+          "name": "coord_lat",
+          "type": "java.lang.String",
+          "dbName": "coord_lat",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "Coord _lat",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
+        },
+        {
+          "name": "coord_long",
+          "type": "java.lang.String",
+          "dbName": "coord_long",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "Coord _long",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
+        },
+        {
+          "name": "preco_litro",
+          "type": "java.lang.String",
+          "dbName": "preco_litro",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "Preco _litro",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
+        },
+        {
+          "name": "custo_km",
+          "type": "java.lang.String",
+          "dbName": "custo_km",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "Custo _km",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false,
+          "sequence": "",
+          "isCascade": false
         }
       ],
       "generateView": "Auto",
@@ -909,8 +1025,8 @@
       "role": "Auto",
       "runtimeClass": "cronos.widgets.joint.uml.Class",
       "size": {
-        "height": 151.71195220947266,
-        "width": 123.734375
+        "height": 195.4314422607422,
+        "width": 132.296875
       },
       "type": "uml.Class",
       "z": 15

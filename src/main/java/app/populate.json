@@ -16,8 +16,460 @@
     "password": "$2a$10$LjzpM1Q3VoAtG2dTCCabNuW0/amVPjL3Iyvyi2Dj7NP.HngtzSewu"
   },
   {
+    "_class": "app.entity.User",
+    "id": "joao",
+    "name": "joao",
+    "login": "joao",
+    "email": "joao@techne.com.br",
+    "password": "$2a$10$LjzpM1Q3VoAtG2dTCCabNuW0/amVPjL3Iyvyi2Dj7NP.HngtzSewu"
+  },
+  {
     "_class": "app.entity.Role",
     "id": "Administrators",
     "user": { "id" : "304BF43E-0E62-4F4A-8A63-3F22D7AD4611" }
+  },
+  {
+    "_class": "app.entity.Carro",
+    "id": "joa-5678",
+    "placa": "joa-5678",
+    "marca": "fiat",
+    "modelo": "mobi",
+    "ano": "2016",
+    "user": { "id" : "joao" }
+  },
+  {
+    "_class": "app.entity.Carro",
+    "id": "mar-1234",
+    "placa": "mar-1234",
+    "marca": "vw",
+    "modelo": "gol",
+    "ano": "2017",
+    "user": { "id" : "maria" }
+  },
+  {
+    "_class": "app.entity.Carro",
+    "id": "adm-2019",
+    "placa": "adm-2019",
+    "marca": "bmw",
+    "modelo": "320i",
+    "ano": "2019",
+    "user": { "id" : "304BF43E-0E62-4F4A-8A63-3F22D7AD4611" }
+  },
+    {
+    "_class": "app.entity.Posto",
+    "id": "Fortal",
+    "posto": "Posto Pégaso",
+    "cep": " 60115-171",
+    "endereco": "Rua Carlos Vasconcelos 2134",
+    "cidade": "Fortaleza",
+    "uf": "CE",
+    "coord_lat":"-3.740409397278694",
+    "coord_long":"-38.5155530859971",
+    "preco_litro":"R$4,65",
+	"custo_km": "R$0,54"
+  },
+  {
+    "_class": "app.entity.Posto",
+    "id": "Picareta Fortal",
+    "posto": "BR Dom Luis",
+    "cep": " 60182-360",
+    "endereco": "Av Dom Luis 800",
+    "cidade": "Fortaleza",
+    "uf": "CE",
+    "coord_lat":"-3.7347846",
+    "coord_long":"-38.4948587",
+    "preco_litro":"R$4,75",
+	"custo_km": "R$0,64"
+
+  },
+    {
+    "_class": "app.entity.Posto",
+    "id": "SPJoaquimNabuco",
+    "posto": "SP Joaquim Nabuco",
+    "cep": " 60182-360",
+    "endereco": "Rua Joaquim Nabuco 2050",
+    "cidade": "Fortaleza",
+    "uf": "CE",
+    "coord_lat":"-3.7431815",
+    "coord_long":"-38.5039805",
+    "preco_litro":"R$4,68",
+	"custo_km": "R$0,70"
+
+  },
+   {
+    "_class": "app.entity.Posto",
+    "id": "ShellGNVAbolicao",
+    "posto": "Shell GNV Abolição",
+    "cep": " 60182-360",
+    "endereco": "Av da Abolição 3395",
+    "cidade": "Fortaleza",
+    "uf": "CE",
+    "coord_lat":"-3.7260598",
+    "coord_long":"-38.4913382",
+    "preco_litro":"R$4,80",
+	"custo_km": "R$0,65"
+
+  },
+
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190101",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-01-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190201",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-02-01",
+    "valor": "110",
+    "precoLitro": "4.40", 
+    "km": "240"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190301",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-03-01",
+    "valor": "100",
+    "precoLitro": "4.20", 
+    "km": "260"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190401",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-04-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190501",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-05-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190601",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-06-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190701",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Picareta Fortal"},
+    "data": "2019-07-01",
+    "valor": "100",
+    "precoLitro": "3.99", 
+    "km": "200"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190801",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-01",
+    "valor": "100",
+    "precoLitro": "4.20", 
+    "km": "260"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190805",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-05",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190810",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-10",
+    "valor": "100",
+    "precoLitro": "4.40", 
+    "km": "240"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190815",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-15",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "joa-5678-20190820",
+    "carro": { "id" : "joa-5678" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-20",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  }
+  ,
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190101",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-01-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "150"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190201",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-02-01",
+    "valor": "110",
+    "precoLitro": "4.40", 
+    "km": "140"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190301",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-03-01",
+    "valor": "100",
+    "precoLitro": "4.20", 
+    "km": "160"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190401",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-04-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "150"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190501",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-05-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "150"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190601",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-06-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "150"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190701",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Picareta Fortal"},
+    "data": "2019-07-01",
+    "valor": "100",
+    "precoLitro": "3.99", 
+    "km": "100"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190801",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-01",
+    "valor": "100",
+    "precoLitro": "4.20", 
+    "km": "160"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190805",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-05",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "150"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190810",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-10",
+    "valor": "100",
+    "precoLitro": "4.40", 
+    "km": "140"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190815",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-15",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "150"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "adm-2019-20190820",
+    "carro": { "id" : "adm-2019" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-20",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "150"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190101",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-01-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190201",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-02-01",
+    "valor": "110",
+    "precoLitro": "4.40", 
+    "km": "240"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190301",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-03-01",
+    "valor": "100",
+    "precoLitro": "4.20", 
+    "km": "260"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190401",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-04-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190501",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-05-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190601",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-06-01",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190701",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Picareta Fortal"},
+    "data": "2019-07-01",
+    "valor": "100",
+    "precoLitro": "3.99", 
+    "km": "200"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190801",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-01",
+    "valor": "100",
+    "precoLitro": "4.20", 
+    "km": "260"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190805",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-05",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190810",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-10",
+    "valor": "100",
+    "precoLitro": "4.40", 
+    "km": "240"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190815",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-15",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
+  },
+  {
+    "_class": "app.entity.Abastecimento",
+    "id": "mar-1234-20190820",
+    "carro": { "id" : "mar-1234" },
+    "posto": {"id": "Fortal"},
+    "data": "2019-08-20",
+    "valor": "100",
+    "precoLitro": "4.30", 
+    "km": "250"
   }
 ]

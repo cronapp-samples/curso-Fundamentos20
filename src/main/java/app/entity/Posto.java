@@ -69,6 +69,34 @@ public class Posto implements Serializable {
   private java.lang.String uf;
 
   /**
+  * @generated
+  */
+  @Column(name = "coord_lat", nullable = true, unique = false, insertable=true, updatable=true)
+  
+  private java.lang.String coord_lat;
+
+  /**
+  * @generated
+  */
+  @Column(name = "coord_long", nullable = true, unique = false, insertable=true, updatable=true)
+  
+  private java.lang.String coord_long;
+
+  /**
+  * @generated
+  */
+  @Column(name = "preco_litro", nullable = true, unique = false, insertable=true, updatable=true)
+  
+  private java.lang.String preco_litro;
+
+  /**
+  * @generated
+  */
+  @Column(name = "custo_km", nullable = true, unique = false, insertable=true, updatable=true)
+  
+  private java.lang.String custo_km;
+
+  /**
    * Construtor
    * @generated
    */
@@ -193,6 +221,86 @@ public class Posto implements Serializable {
    */
   public Posto setUf(java.lang.String uf){
     this.uf = uf;
+    return this;
+  }
+
+  /**
+   * Obtém coord_lat
+   * return coord_lat
+   * @generated
+   */
+  
+  public java.lang.String getCoord_lat(){
+    return this.coord_lat;
+  }
+
+  /**
+   * Define coord_lat
+   * @param coord_lat coord_lat
+   * @generated
+   */
+  public Posto setCoord_lat(java.lang.String coord_lat){
+    this.coord_lat = coord_lat;
+    return this;
+  }
+
+  /**
+   * Obtém coord_long
+   * return coord_long
+   * @generated
+   */
+  
+  public java.lang.String getCoord_long(){
+    return this.coord_long;
+  }
+
+  /**
+   * Define coord_long
+   * @param coord_long coord_long
+   * @generated
+   */
+  public Posto setCoord_long(java.lang.String coord_long){
+    this.coord_long = coord_long;
+    return this;
+  }
+
+  /**
+   * Obtém preco_litro
+   * return preco_litro
+   * @generated
+   */
+  
+  public java.lang.String getPreco_litro(){
+    return this.preco_litro;
+  }
+
+  /**
+   * Define preco_litro
+   * @param preco_litro preco_litro
+   * @generated
+   */
+  public Posto setPreco_litro(java.lang.String preco_litro){
+    this.preco_litro = preco_litro;
+    return this;
+  }
+
+  /**
+   * Obtém custo_km
+   * return custo_km
+   * @generated
+   */
+  
+  public java.lang.String getCusto_km(){
+    return this.custo_km;
+  }
+
+  /**
+   * Define custo_km
+   * @param custo_km custo_km
+   * @generated
+   */
+  public Posto setCusto_km(java.lang.String custo_km){
+    this.custo_km = custo_km;
     return this;
   }
 
