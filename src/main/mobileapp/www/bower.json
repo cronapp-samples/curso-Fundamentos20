@@ -29,6 +29,6 @@
     "cronapp-google-maps": "0.0.11"
   },
   "resolutions": {
-    "angular": ">=1.2.0 <1.8.0"
+    "angular": "\u003e\u003d1.2.0 \u003c1.8.0"
   }
 }
